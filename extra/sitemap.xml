@@ -1,0 +1,16 @@
+---
+layout: none
+permalink: sitemap.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>{{site.url}}</loc>
+    </url>
+    {% assign sortposts = site.posts | sort: 'title' | reverse %}
+    {% for post in sortposts %}
+    <url>
+        <loc>{{site.url}}/{{ post.permalink }}</loc>
+    </url>
+    {% endfor %}
+</urlset>

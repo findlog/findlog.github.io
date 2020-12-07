@@ -1,0 +1,66 @@
+  <head>
+      <meta charset="UTF-8">
+      <meta name="robots" content="noarchive,notranslate">
+      <meta http-equiv="Cache-Control" content="no-transform">
+      <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+
+      {% assign pageid = page.permalink | plus:0 %}
+      {% if page.layout == "custom" %}
+      <meta name="description" content="{{ site.data.tag[page.permalink].excerpt }}">
+      {% else if site.data.post[pageid] %}
+      <meta name="description" content="{{site.data.post[pageid].digest}}">
+      {% else if page.excerpt %}
+      <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}">
+      {% else %}
+      <meta name="description" content="{{ site.description }}">
+      {% endif %}
+
+      {% if page.permalink %}
+      
+        {% assign subjectLength = page.subject | size %}
+        {% if subjectLength > 80 %}
+          {% assign pageSubject = page.subject | truncate: 80 | append: "..." %}
+        {% else %}
+          {% assign pageSubject = page.subject %}
+        {% endif %}
+          <title>{{ pageSubject }}</title>
+  
+      {% else %}
+      <title>{{ site.title }}</title>
+      {% endif %}
+
+      <link rel="canonical" href="https://baku753.github.io/">
+
+      {% if page.permalink %}
+      <link href="https://baku753.github.io/{{page.permalink}}" rel="canonical">
+      {% else %}
+      <link href="https://baku753.github.io" rel="canonical">
+      {% endif %}
+
+      <link href="{{ "/asset/css/default.css" | prepend: site.baseurl }}" rel="stylesheet">
+      <link href="{{ "/asset/css/syntax.css" | prepend: site.baseurl }}" rel="stylesheet">
+      <!--<link href="https://fonts.googleapis.com/earlyaccess/notosansjp.css" rel="stylesheet">-->
+      
+      {% if page.layout != "custom" %}
+      <link rel="alternate" type="application/rss+xml" title="{{ site.title }}の新着記事" href="/feed.xml" />
+      {% endif %}
+      
+      <script src="../asset/js/library/jquery/jquery.min.js"></script>
+
+      <script type="application/ld+json">
+      {
+      "@context" : "http://schema.org",
+      "@type": "WebSite",
+      {% if page.layout == "custom" %}
+      "url": "{{ site.url }}/{{page.permalink}}",
+      "name": "{{ page.subject }}"
+      {% else %}
+      "url": "{{ site.url }}",
+      "name": "{{ site.title }}"
+      {% endif %}
+      }
+      </script>
+
+      {% include analytics.html %}
+
+  </head>

@@ -1,0 +1,18 @@
+{% assign tagid = page.tags[0] %}
+
+{% if page.layout == "custom" %}
+  {% assign tagid = page.permalink %}
+{% endif %}
+
+{% if site.tags[tagid] or page.layout == "custom" %}
+  {% if site.data.tag[tagid].name %}
+        {% assign tagname = site.data.tag[tagid].name %}
+  {% else %}
+        {% assign tagname = tagid %}
+  {% endif %}
+  <hr>
+  <ul class="breadcrumb">
+  <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ site.url }}" itemprop="url"><span itemprop="title">{{site.title}}</span></a></li>
+  <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ site.url }}/{{ tagid }}" itemprop="url"><span itemprop="title">{{tagname}}</span></a></li>
+  </ul>
+{% endif %}

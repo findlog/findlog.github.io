@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja" class="note">
+  {% include head.html %}
+  <body>
+    {% include tagmanager.html %}
+
+{% if page.permalink == "S00000001" %}
+
+    {% if page.permalink %}
+      <h1 id="sitecover"><a href="{{ site.url }}"><img src="/asset/image/layout/cover.jpg" class="fullwidth"></a></h1>
+    {% else %}
+      <h1 id="sitecover"><img src="/asset/image/layout/cover.jpg" class="fullwidth"></h1>
+    {% endif %}
+    
+{% endif %}
+
+{% if page.permalink != "S000002" %}
+
+    {% if page.permalink %}
+      <h1 id="sitename"><a href="{{ site.url }}">学習帳</a></h1>
+    {% else %}
+      <h1 id="sitename">学習帳</h1>
+    {% endif %}
+    
+    {% if page.subject %}
+      <h1 id="notesubject">{{ page.subject }}</h1>
+    {% else %}
+      <h1 id="notesubject">&nbsp;</h1>
+    {% endif %}
+
+    {% if page.date %}
+      {% include date.html %}
+    {% endif %}
+
+{% endif %}
+    <div id="notecontent">
+    {{ content }}
+    {% if page.date %}
+    
+      {% include comment.html %}
+      {% include breadcrumb.html %}
+      {% include related.html %}
+
+      {% include adsense.html %}
+      {% if page.tags[1] == "snippet1" %}
+        <hr>
+        <p style="text-align:center;">{% include admax.html %}</p>
+      {% endif %}
+      {% if page.tags[0] == "ios1" %}
+        <hr>
+        <p style="text-align:center;">
+          <div presso_sid="133663"></div>
+        </p>
+        <script src="//aplkp.valuecommerce.com/adspace.js"></script>
+      {% endif %}
+      <hr>
+
+    {% endif %}
+    </div>
+
+    {% include footer.html %}
+
+  </body>
+</html>

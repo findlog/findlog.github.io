@@ -1,0 +1,13 @@
+    {% if page.update %}
+      <div id="modifydate">
+        <p>最終更新：<time datetime="{{page.update | date: "%Y-%m-%d"}}">{{page.update | date: "%y.%-m.%-d"}}</time></p>
+      </div>
+      <hr>
+    {% else %}
+      {% if page.date %}
+      <div id="postdate">
+        <p>公開：<time datetime="{{page.date | date: "%Y-%m-%d"}}">{{page.date | date: "%y.%-m.%-d"}}</time></p>
+      </div>
+      <hr>
+      {% endif %}
+    {% endif %}

@@ -1,0 +1,30 @@
+{% for tag in site.tags %}
+{% assign tagname = tag[0] %}
+{% assign tagposts = tag[1] %}
+{% assign postlimit = 100000 %}
+{% if tagname == page.permalink or page.permalink == "archive" %}
+<article>
+  {% if page.permalink == "archive" %}
+    <h2 id="{{ tag[0] }}">
+      {% if site.data.tag[tagname].name %}
+        {{site.data.tag[tagname].name}}
+      {% else %}
+        {{tagname}}
+      {% endif %}
+    </h2>
+    {% assign postlimit = 9 %}
+  {% else %}
+  {% endif %}
+  <ul>
+    {% for tagpost in tagposts limit:postlimit %}
+    <li><a href="{{ tagpost.url }}">{{ tagpost.subject }}</a></li>
+    {% endfor %}
+  </ul>
+  
+  {% if page.permalink == "archive" and tagposts.size > postlimit %}
+  <p><a href="{{site.url}}/{{tagname}}">すべて表示({{ tag[1].size }}件)</a></p>
+  {% endif %}
+
+</article>
+{% endif %}
+{% endfor %}

@@ -1,0 +1,29 @@
+---
+subject: "目次"
+---
+<hr>
+
+{% assign sortposts = paginator.posts | sort: 'title' %}
+{% for post in paginator.posts %}
+  {% assign postid = post.permalink | plus:0 %}
+  {% if post.subject %}
+  <p>
+    <a href="{{post.url}}" class="noteindex{% if post.tags %} {{post.tags[0]}}{% endif %}" id="{{post.permalink}}">{{post.subject}}</a><br>
+    {% if site.data.post[postid] %}
+      <span class="noteexcerpt">{{site.data.post[postid].digest}}</span><br>
+    {% else if post.excerpt != "off" %}
+      <span class="noteexcerpt">{{ post.excerpt | strip_html | strip_newlines }}...</span><br>
+    {% endif %}
+  </p>
+  <hr>
+  {% endif %}
+{% endfor %}
+
+{% comment %}
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+{% include kindle/focus.html %}
+{% endcomment %}
+
+{% include pagination.html %}
+
+12

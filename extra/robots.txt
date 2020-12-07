@@ -1,0 +1,13 @@
+---
+layout: none
+permalink: robots.txt
+---
+User-agent: Googlebot-Image
+Disallow: /
+
+User-agent: *
+Noindex: /page*
+Noindex: /about
+Noindex: /archive
+Noindex: /contact
+Noindex: /privacy

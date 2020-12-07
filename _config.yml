@@ -1,0 +1,28 @@
+title: 学習帳
+url: https://findlog.github.io
+description: 学んだ知識や教訓を情報共有するサイト。
+timezone: Asia/Tokyo
+permalink: :title
+markdown_ext: "md"
+paginate: 50
+gems: jekyll-paginate
+
+kramdown:
+  hard_wrap: true
+
+defaults:
+  -
+    scope:
+      type: posts
+    values:
+      layout: default
+  -
+    scope:
+      type: pages
+    values:
+      layout: default
+  -
+    scope:
+      path: "asset"
+    values:
+      layout: none

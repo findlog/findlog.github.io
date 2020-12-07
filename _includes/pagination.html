@@ -1,0 +1,12 @@
+
+<p class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path }}" class="previous">新しいページ</a>
+  {% else %}<span class="previous">新しいページ</span>{% endif %}
+
+  <span class="page_number">{{ paginator.page }} / {{ paginator.total_pages }}</span>
+
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path }}" class="next">古いページ</a>
+  {% else %}<span class="next">古いページ</span>{% endif %}
+</p>

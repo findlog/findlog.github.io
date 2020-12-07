@@ -1,0 +1,38 @@
+      {% assign showrelated = false %}
+      {% if page.tags %}
+
+        {% for tag in site.tags %}
+            {% if tag[0] == page.tags[0] and tag[1].size > 1 %}
+            {% assign showrelated = true %}
+        <hr>
+        <h2>関連記事</h2>
+            <ol class="related">
+              {% for tagpost in tag[1] limit:3 %}
+              <li>
+              {% if tagpost.title == page.title %}{{ tagpost.subject }}
+              {% else %}<a href="{{ tagpost.url }}">{{ tagpost.subject }}</a>
+              {% endif %}
+              </li>
+              {% endfor %}
+              {% include nend.html %}
+            </ol>
+            {% endif %}
+        {% endfor %}
+
+      {% endif %}
+
+      {% if showrelated == false %}
+        <hr>
+        <h2>新着記事</h2>
+        <ol class="latest">
+          {% for newpost in site.posts limit:3 %}
+            <li>
+            {% if newpost.title == page.title %}{{ newpost.subject }}
+            {% else %}<a href="{{ newpost.url }}">{{ newpost.subject }}</a>
+            {% endif %}
+            </li>
+          {% endfor %}
+          {% include nend.html %}
+
+        </ol>
+      {% endif %}
